@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+
+env:
+  JDK_VERSION: '21'
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JDK_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Build
+        run: chmod +x mvnw && ./mvnw compile
+
+  test:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JDK_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Test
+        run: chmod +x mvnw && ./mvnw test
