@@ -12,6 +12,9 @@ public class Player {
     private final double scrollMultiplier;
 
     public Player(Id playerId, Name name, Experience experience, Rank rank, boolean hasScroll) {
+        if (playerId == null || name == null || experience == null || rank == null) {
+            throw new IllegalArgumentException("Player fields cannot be null");
+        }
         this.playerId = playerId;
         this.name = name;
         this.experience = experience;
@@ -23,6 +26,9 @@ public class Player {
     }
 
     public void gainExperience(Experience experience) {
+        if (experience == null) {
+            throw new IllegalArgumentException("Experience cannot be null");
+        }
         this.experience = this.experience.add(experience);
     }
 }

@@ -34,6 +34,9 @@ public class Experience{
    }
 
    public Experience add(Experience other) {
+        if (other == null) {
+            throw new IllegalArgumentException("Experience cannot be null");
+        }
         return new Experience(this.experience + other.experience);
    }
 
