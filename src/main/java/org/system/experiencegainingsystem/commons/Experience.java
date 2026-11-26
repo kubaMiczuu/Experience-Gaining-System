@@ -28,7 +28,7 @@ public class Experience{
 
    public Experience multiply(double multiplier) {
         if(multiplier < 0) {
-            throw new IllegalArgumentException("multiplier must be a positive number");
+            throw new IllegalArgumentException("Multiplier cannot be negative");
         }
         return new Experience(this.experience * multiplier);
    }
